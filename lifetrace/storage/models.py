@@ -225,3 +225,22 @@ class TokenUsage(Base):
 
     def __repr__(self):
         return f"<TokenUsage(id={self.id}, model={self.model}, total_tokens={self.total_tokens}, cost={self.total_cost})>"
+
+
+class Schedule(Base):
+    """日程管理模型"""
+
+    __tablename__ = "schedules"
+
+    id = Column(Integer, primary_key=True)
+    title = Column(String(200), nullable=False)  # 日程标题
+    description = Column(Text)  # 日程描述
+    start_time = Column(DateTime, nullable=False)  # 开始时间
+    end_time = Column(DateTime)  # 结束时间（可选）
+    status = Column(String(20), default="pending", nullable=False)  # 状态：pending, in_progress, completed
+    created_at = Column(DateTime, default=get_local_time, nullable=False)
+    updated_at = Column(DateTime, default=get_local_time, onupdate=get_local_time, nullable=False)
+    deleted_at = Column(DateTime)  # 软删除时间戳
+
+    def __repr__(self):
+        return f"<Schedule(id={self.id}, title={self.title}, status={self.status})>"

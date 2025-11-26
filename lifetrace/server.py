@@ -19,6 +19,7 @@ from lifetrace.routers import (
     ocr,
     project,
     rag,
+    schedule,
     scheduler,
     screenshot,
     search,
@@ -98,6 +99,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3001",
         "http://localhost:8000",
         "http://127.0.0.1:8000",
     ],
@@ -148,6 +151,7 @@ app.include_router(task.router)
 app.include_router(context.router)
 app.include_router(rag.router)
 app.include_router(scheduler.router)
+app.include_router(schedule.router)
 app.include_router(cost_tracking.router)
 app.include_router(time_allocation.router)
 
